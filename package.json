@@ -1,6 +1,6 @@
 {
   "name": "dush-options",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Adds `.option`, `.enable` and `.disable` methods to your `dush` application",
   "repository": "tunnckoCore/dush-options",
   "author": "Charlike Mike Reagent <@tunnckoCore> (https://i.am.charlike.online)",
