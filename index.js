@@ -99,14 +99,23 @@ module.exports = function dushOptions (options) {
 
     app.option = function option (key, value) {
       if (!arguments.length) {
+        app.emit('option', app.options)
+        // option:getAll app.options
         return app.options
       }
       if (arguments.length === 1 && typeof key === 'string') {
-        return get(app.options, key)
+        var val = get(app.options, key)
+        app.emit('option', app.options, key, val)
+        // option:get key
+        return val
       }
       if (isObject(key)) {
+        app.emit('option', app.options, key)
+        // option:setAll key
         app.options = mixin({}, app.options, key)
       } else {
+        app.emit('option', app.options, key, value)
+        // option:set key, value
         set(app.options, key, value)
       }
       return app.options
@@ -135,6 +144,7 @@ module.exports = function dushOptions (options) {
      */
 
     app.enable = function enable (key) {
+      app.emit('enable', key)
       app.option(key, true)
       return app
     }
@@ -168,6 +178,7 @@ module.exports = function dushOptions (options) {
      */
 
     app.disable = function disable (key) {
+      app.emit('disable', key)
       app.option(key, false)
       return app
     }
