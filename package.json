@@ -77,7 +77,20 @@
     },
     "lint": {
       "reflinks": true
-    }
+    },
+    "reflinks": [
+      "base",
+      "charlike",
+      "commitizen",
+      "dush",
+      "get-value",
+      "merge-deep",
+      "minibase",
+      "set-value",
+      "standard-version",
+      "verb",
+      "verb-generate-readme"
+    ]
   },
   "nyc": {
     "check-coverage": true,
