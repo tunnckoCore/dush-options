@@ -41,7 +41,20 @@
   "files": [
     "index.js"
   ],
-  "keywords": [],
+  "keywords": [
+    "base",
+    "baseplugin",
+    "cache",
+    "disable",
+    "dush",
+    "dushplugin",
+    "enable",
+    "minibase",
+    "minibaseplugin",
+    "option",
+    "option-cache",
+    "options"
+  ],
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
