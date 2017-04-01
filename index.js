@@ -8,7 +8,7 @@
 'use strict'
 
 var isObject = require('isobject')
-var merge = require('merge-deep')
+var mixin = require('mixin-deep')
 var set = require('set-value')
 var get = require('get-value')
 
@@ -49,7 +49,7 @@ module.exports = function dushOptions (options) {
       return
     }
 
-    app.options = merge({}, app.options, options)
+    app.options = mixin({}, app.options, options)
 
     /**
      * > Set or get an option(s). Support dot notation syntax too.
@@ -57,7 +57,7 @@ module.exports = function dushOptions (options) {
      * If `key` is string and no `value` argument, it gets that property
      * from the `app.options` object - using [get-value][],
      * so `app.option('foo.bar.qux')`. If `key` is object it is merged
-     * with `app.options` using [merge-deep][]. If both `key` and `value` is given
+     * with `app.options` using [mixin-deep][]. If both `key` and `value` is given
      * then it sets `value` to `key` property, using [set-value][] library.
      *
      * **Example**
@@ -93,7 +93,7 @@ module.exports = function dushOptions (options) {
      *
      * @param  {String|Object} `key` path to some option property, e.g. `a.b.c`
      * @param  {any} `value` if `key` is string, any value to set to `key` property
-     * @return {Object} always returns _clone_ of the modified `app.options` object
+     * @return {Object} _clone_ of the modified `app.options` object, or some `key` value
      * @api public
      */
 
@@ -105,7 +105,7 @@ module.exports = function dushOptions (options) {
         return get(app.options, key)
       }
       if (isObject(key)) {
-        app.options = merge({}, app.options, key)
+        app.options = mixin({}, app.options, key)
       } else {
         set(app.options, key, value)
       }
