@@ -305,7 +305,7 @@ _Project scaffolded using [charlike][] cli._
 [daviddm-devdeps-url]: https://david-dm.org/tunnckoCore/dush-options?type=dev
 [daviddm-devdeps-img]: https://img.shields.io/david/dev/tunnckoCore/dush-options.svg
 
-[ghtag-url]: https://github.com/tunnckoCore/dush-options/releases/tag/v1.0.0
+[ghtag-url]: https://github.com/tunnckoCore/dush-options/tags
 [ghtag-img]: https://img.shields.io/github/tag/tunnckoCore/dush-options.svg?label=github%20tag
 
 [npmv-url]: https://www.npmjs.com/package/dush-options
