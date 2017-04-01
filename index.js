@@ -8,9 +8,9 @@
 'use strict'
 
 var isObject = require('isobject')
+var setValue = require('set-value')
+var getValue = require('get-value')
 var mixin = require('mixin-deep')
-var set = require('set-value')
-var get = require('get-value')
 
 /**
  * > A plugin for [dush][]/[minibase][]/[base][] that adds `.option`, `.enable` and `.disable`
@@ -104,20 +104,13 @@ module.exports = function dushOptions (options) {
         return app.options
       }
       if (arguments.length === 1 && typeof key === 'string') {
-        var val = get(app.options, key)
+        var val = getValue(app.options, key)
         app.emit('option', app.options, key, val)
         // option:get key
         return val
       }
-      if (isObject(key)) {
-        app.emit('option', app.options, key)
-        // option:setAll key
-        app.options = mixin({}, app.options, key)
-      } else {
-        app.emit('option', app.options, key, value)
-        // option:set key, value
-        set(app.options, key, value)
-      }
+
+      app.options = set(app, key, value)
       return app.options
     }
 
@@ -179,8 +172,32 @@ module.exports = function dushOptions (options) {
 
     app.disable = function disable (key) {
       app.emit('disable', key)
-      app.option(key, false)
+      set(app, key, false)
       return app
     }
   }
+}
+
+/**
+ * > Helper method. Exist just because
+ * the signal for "duplication" between `app.enable`
+ * and `app.disable` by `codeclimate`
+ *
+ * @param {Object} `app`
+ * @param {String} `key`
+ * @param {any} `value`
+ */
+
+function set (app, key, value) {
+  if (isObject(key)) {
+    app.emit('option', app.options, key)
+    // option:setAll key
+    app.options = mixin({}, app.options, key)
+  } else {
+    app.emit('option', app.options, key, value)
+    // option:set key, value
+    setValue(app.options, key, value)
+  }
+
+  return app.options
 }
