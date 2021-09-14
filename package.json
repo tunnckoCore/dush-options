@@ -23,7 +23,7 @@
     "get-value": "^2.0.6",
     "isobject": "^3.0.0",
     "mixin-deep": "^1.2.0",
-    "set-value": "^0.4.3"
+    "set-value": "^4.0.1"
   },
   "devDependencies": {
     "commitizen": "~2.7.0",
